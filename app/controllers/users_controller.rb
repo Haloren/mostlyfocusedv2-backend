@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
 
     def show
+        # byebug
         user = User.first
-        weather = WeatherData.new(zip)
-        render  json: user
+        weather = WeatherData.new(user.zip)
+        # render json: user
+        render json: weather
     end
 
 end
