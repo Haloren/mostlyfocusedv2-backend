@@ -1,16 +1,6 @@
 class EventsController < ApplicationController
     before_action :set_user
 
-    def index
-        events = Event.all
-        render json: events
-    end
-
-    def show
-        event = Event.find_by(id: params[:id])
-        render json: event
-    end
-
     def create
         # event = Event.new(event_params)
         event = @user.events.new(event_params)

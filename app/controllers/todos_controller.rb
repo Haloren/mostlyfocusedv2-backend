@@ -1,16 +1,6 @@
 class TodosController < ApplicationController
     before_action :set_user
 
-    def index
-        todos = Todo.all
-        render json: todos
-    end
-
-    def show
-        todo = Todo.find_by(id: params[:id])
-        render json: todo
-    end
-
     def create
         # todo = Todo.new(todo_params)
         todo = @user.todos.new(todo_params)
