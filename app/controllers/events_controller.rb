@@ -1,12 +1,11 @@
 class EventsController < ApplicationController
-    before_action :set_user
-
     def create
+        user = User.find(params[:user_id])
         # event = Event.new(event_params)
-        event = @user.events.new(event_params)
+        event = user.events.new(event_params)
         if event.save
             # render json: event
-            render json: @user
+            render json: user
         else
             render json: {message: event.errors.full_messages.to_sentence}
         end
@@ -25,8 +24,8 @@ class EventsController < ApplicationController
     end
 
     def destroy
-        event = Event.all.find_by(id: params[:id])
-        user = User.find(event.user_id)
+        event = Event.find_by(id: params[:id])
+        user = User.find_by(id: event.user_id)
         if event
             event.destroy
             render json: user
@@ -36,10 +35,6 @@ class EventsController < ApplicationController
     end
 
     private
-    def set_user
-        @user = User.find(params[:user_id])
-    end
-
     def event_params
         params.require(:event).permit(:title, :date, :user_id)
     end

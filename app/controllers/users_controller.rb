@@ -5,6 +5,7 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    #RETURNS THE USERS WEATHER DATA FROM https://openweathermap.org/weather-data
     def show
         # byebug
         user = User.first
