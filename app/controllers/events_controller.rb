@@ -12,6 +12,18 @@ class EventsController < ApplicationController
         end
     end
 
+    def update
+        #byebug
+        event = Event.find_by(id: params[:id])
+        user = User.find_by(id: event.user_id)
+        if event
+            event.update(title: params["events"]["title"], date: params["events"]["date"])
+            render json: user
+        else 
+            render json {message: "Failed to update"}
+        end
+    end
+
     def destroy
         event = Event.all.find_by(id: params[:id])
         user = User.find(event.user_id)
