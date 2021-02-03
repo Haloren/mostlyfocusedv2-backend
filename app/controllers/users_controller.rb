@@ -15,9 +15,10 @@ class UsersController < ApplicationController
     end
 
    def update
+        # byebug
         user = User.first
         if user
-            user.update(zip: params["user"]["zip"])
+            user.update(zip: params["zip"])
             render json: weather
         else 
             render json: {message: "Unable to update Zip Code"}
