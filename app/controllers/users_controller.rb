@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         user = User.first
         if user
             user.update(zip: params["zip"])
-            render json: weather
+            render json: user
         else 
             render json: {message: "Unable to update Zip Code"}
         end
