@@ -19,7 +19,7 @@ class EventsController < ApplicationController
             event.update(title: params["events"]["title"], date: params["events"]["date"])
             render json: user
         else 
-            render json {message: "Failed to update"}
+            render json: {message: "Failed to update"}
         end
     end
 
